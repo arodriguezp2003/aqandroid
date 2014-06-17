@@ -1,0 +1,117 @@
+package com.rsdev.aquacontrol;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.StrictMode;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class Login  extends Activity{
+	 private static String tag_json_arry = "json_array_req";
+	 private static  String url = "http://aquacontrol.la/api/v1/apis/autentifica/";
+	 private String TAG = "JAN";
+	 
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.login);
+	    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	    StrictMode.setThreadPolicy(policy); 
+	    
+	    Button btn = (Button)findViewById(R.id.xAceptar);
+	    final EditText user = (EditText)findViewById(R.id.xUsuario);
+	    final EditText pass = (EditText)findViewById(R.id.xPassword);
+		final ProgressDialog pDialog = new ProgressDialog(Login.this);
+		 btn.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					String _user = user.getText().toString().trim();
+					String _pass = pass.getText().toString();
+					
+					String url2 = url + _user.toString() + "/" + _pass.toString();
+					pDialog.setMessage("Cargando...");
+					pDialog.show();  
+					
+					JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
+			                url2, null,
+			                new Response.Listener<JSONObject>() {
+			 
+			                    @Override
+			                    public void onResponse(JSONObject response) {
+			                        Log.d(TAG, response.toString());
+			                        try {
+										String error = response.getString("error");
+										int es =  Integer.parseInt(error);
+										if(es==1)
+										{
+											AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+										    alertDialog.setTitle("Login");
+										    alertDialog.setMessage("El Usuario a la Contraseña es Invalida");
+															        alertDialog.setIcon(R.drawable.ic_launcher);
+										    alertDialog.show();
+										    pDialog.hide();
+											return ;
+										}
+										} catch (JSONException e) {
+										
+										e.printStackTrace();
+									}
+			                        try {
+										JSONArray cx = response.getJSONArray("usuario");
+										JSONObject c = cx.getJSONObject(0);
+										if(c.getString("avatar").toString()!=null)
+										{
+											AppController.Avatar  =AppController.RutaImgAvatar  +   c.getString("avatar").toString();
+										}
+										else
+										{
+											AppController.Avatar =null;
+										}
+										String data = c.getString("first_name").toString() + " " + c.getString("last_name").toString();
+										AppController.UserName = data;
+										AppController.LastLogin = c.getString("last_login").toString();
+										
+									} catch (JSONException e) {
+							
+									}
+			                        
+			                        pDialog.hide();
+			                        startActivity(new Intent(MainActivity.this,main.class));
+			                    }
+			                }, new Response.ErrorListener() {
+			 
+			                    @Override
+			                    public void onErrorResponse(VolleyError error) {
+			                        VolleyLog.d(TAG, "Error: " + error.getMessage());
+			                        pDialog.hide();
+			                    }
+			                }){
+						 @Override
+						   public Map<String, String> getHeaders() throws AuthFailureError 
+						   {
+				                HashMap<String, String> headers = new HashMap<String, String>();
+				                headers.put("Content-Type", "application/json");
+				                headers.put("Authorization", getB64Auth("superadmin@mail.com", "Ar9844609"));
+				                return headers;
+				            }
+						  private String getB64Auth (String login, String pass) 
+						  {
+					    	   String source=login+":"+pass;
+					    	   String ret="Basic "+Base64.encodeToString(source.getBytes(),Base64.URL_SAFE|Base64.NO_WRAP);
+					    	   return ret;
+					      }
+					};
+
+			// Adding request to request queue
+			AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_arry);
+				}
+			});
+		
+	}
+}

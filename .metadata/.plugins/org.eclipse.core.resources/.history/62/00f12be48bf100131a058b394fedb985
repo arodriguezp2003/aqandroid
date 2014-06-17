@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BlueFlameWMS</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+        <string name="auth">Login</string>
+    <string name="user">Usuario</string>
+    <string name="password">Password</string>
+    <string name="btn_TareaConteoEstandar">Conteo Standard</string>
+    <string name="btn_TareaConteoEstandarVAL">Validacion Standard</string>
+    <string name="btn_tare_conteo_peso">Conteo Peso Variable</string>
+    <string name="btn_tare_conteo_pesoVAL">Validacion Variable</string>
+ 	<string name="btn_ubicacion">Ubicacion</string>
+ 	<string name="seleccionr_cliente">Seleccione un Cliente</string>
+ 	<string name="numero_inventario">Ingrese Numero de Inventario</string>
+ 	<string name="Aceptar">Aceptar</string>
+ 	<string name="Buscar">Buscar</string>
+ 	<string name="SKU">SKU</string>
+ 	<string name="Descripcion">Descripcion</string>
+ 	<string name="UnidadLogistica">Unidad Logistica</string>
+ 	<string name="UnidadConteo">Unidad de Conteo</string>
+ 	<string name="FactorConversion">Factor Conversion</string>
+ 	<string name="Calculadora">Calculadora</string>
+ 	<string name="cero">0</string>
+ 	<string name="FechaVencimiento">Fecha de Vencimiento</string>
+ 	<string name="Pallet">Pallet</string>
+ 	<string name="Ubicacion">Ubicacion</string>
+ 	<string name="Altura">Altura</string>
+ 	<string name="Bodega">Bodega</string>
+ 	<string name="AtributoExtra">Atributo Extra</string>
+</resources>

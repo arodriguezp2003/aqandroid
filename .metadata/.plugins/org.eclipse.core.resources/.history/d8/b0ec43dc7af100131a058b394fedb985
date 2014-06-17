@@ -1,0 +1,78 @@
+package com.rsdev.aquacontrol;
+
+import java.net.MalformedURLException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+import io.*;
+import io.socket.*;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v4.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.os.Build;
+
+public class MainActivity extends ActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    	// TODO Auto-generated method stub
+    	super.onCreate(savedInstanceState);
+    	setContentView(R.layout.activity_main);
+    	final TextView txt = (TextView)findViewById(R.id.xTexto);
+    	   SocketIO socket;
+	
+		try {
+			socket = new SocketIO("http://realtime.aquacontrol.la");
+		
+	
+           socket.connect(new IOCallback() {
+               @Override
+               public void onMessage(JSONObject json, IOAcknowledge ack) {
+                   txt.setText(json.toString());
+               }
+
+
+               @Override
+               public void onError(SocketIOException socketIOException) {
+                   System.out.println("an Error occured");
+                   socketIOException.printStackTrace();
+               }
+
+               @Override
+               public void onDisconnect() {
+                   System.out.println("Connection terminated.");
+               }
+
+               @Override
+               public void onConnect() {
+                   System.out.println("Connection established");
+               }
+
+               @SuppressWarnings("unused")
+			public void on(JSONObject event, IOAcknowledge ack, Object... args) {
+                   System.out.println("Server triggered event '" + event.toString() + "'");
+                   txt.setText(event.toString());
+               }
+
+
+			@Override
+			public void onMessage(String arg0, IOAcknowledge arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+           });
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    }
+}
