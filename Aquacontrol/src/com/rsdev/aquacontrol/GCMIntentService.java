@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
@@ -88,44 +89,46 @@ public class GCMIntentService extends GCMBaseIntentService {
     /**
      * Issues a notification to inform the user that server has sent a message.
      */
-    private static void generateNotification(Context context, String message) {
-        int icon = R.drawable.ic_launcher;
-        long when = System.currentTimeMillis();
-        NotificationManager notificationManager = (NotificationManager)
-                context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notification = new Notification(icon, message, when);
-        
-        String title = context.getString(R.string.app_name);
-     
-        
-        Intent notificationIntent =new Intent(context, Login.class); 
-        
-        
+   
+	private static void generateNotification(Context context, String message) {
+    	NotificacionNueva(context,message);   	
+    }
+    private static void NotificacionNueva(Context context, String message) 
+    {
+    	 int MY_NOTIFICATION_ID=1;
+    	 NotificationManager notificationManager;
+    	 Notification myNotification;
+    	 
+    	 Intent myIntent =new Intent(context, MainActivity.class); 
         if(AppController.UserName.isEmpty())
         {
-        	notificationIntent= new Intent(context, Login.class);
+        	myIntent= new Intent(context, Login.class);
         }
         else
         {
-        	 notificationIntent= new Intent(context, MainActivity.class);
+        	myIntent= new Intent(context, MainActivity.class);
         }
-        // set intent so it does not start a new activity
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent intent =
-                PendingIntent.getActivity(context, 0, notificationIntent, 0);
-        notification.setLatestEventInfo(context, title, message, intent);
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+               context, 
+               0, 
+               myIntent, 
+               Intent.FLAG_ACTIVITY_NEW_TASK);
         
-        // Play default notification sound
-        notification.defaults |= Notification.DEFAULT_SOUND;
-        AppController.Mensaje= message;
-        //notification.sound = Uri.parse("android.resource://" + context.getPackageName() +M
+        myNotification = new NotificationCompat.Builder(context)
+          .setContentTitle("AquaControl.la!")
+          .setContentText(message)
+          .setTicker("AquaControl: " + message)
+          .setWhen(System.currentTimeMillis())
+          .setContentIntent(pendingIntent)
+          .setDefaults(Notification.DEFAULT_SOUND)
+          .setAutoCancel(true)
+          .setSmallIcon(R.drawable.ic_launcher)
+          .build();
         
-        // Vibrate if vibrate is enabled
-        notification.defaults |= Notification.DEFAULT_VIBRATE;
-        notificationManager.notify(0, notification);      
-
+        notificationManager = 
+          (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(MY_NOTIFICATION_ID, myNotification);
+    	
     }
 
 }

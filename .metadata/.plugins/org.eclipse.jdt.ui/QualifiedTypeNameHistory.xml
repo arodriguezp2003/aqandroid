@@ -19,4 +19,5 @@
 <fullyQualifiedTypeName name="com.rsdev.aquacontrol.MainActivity"/>
 <fullyQualifiedTypeName name="com.rsdev.aquacontrol.R"/>
 <fullyQualifiedTypeName name="com.rsdev.aquacontrol.Login"/>
+<fullyQualifiedTypeName name="android.support.v4.app.NotificationCompat"/>
 </qualifiedTypeNameHistroy>

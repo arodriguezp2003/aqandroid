@@ -121,12 +121,8 @@ public class Login  extends Activity{
 										String error = response.getString("error");
 										int es =  Integer.parseInt(error);
 										if(es==1)
-										{/*
-											AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
-										    alertDialog.setTitle("Login");
-										    alertDialog.setMessage("El Usuario a la Contraseña es Invalida");
-															        alertDialog.setIcon(R.drawable.ic_launcher);
-										    alertDialog.show();*/
+										{
+											
 											errores.setText("El Usuario o la Contraseña es Invalida");
 											errores.setVisibility(View.VISIBLE);
 									
@@ -141,9 +137,11 @@ public class Login  extends Activity{
 			                        pDialog.hide();
 			                        name = _user;
 			                        AppController.UserName = _user;
-			                        registrar();
-			                        errores.setVisibility(View.GONE);
-			                        startActivity(new Intent(Login.this,MainActivity.class));
+			                        if(registrar())
+			                        {
+			                        	errores.setVisibility(View.GONE);
+			                        	startActivity(new Intent(Login.this,MainActivity.class));
+			                        }
 			                    }
 			                }, new Response.ErrorListener() {
 			 
@@ -177,9 +175,9 @@ public class Login  extends Activity{
 		
 	}
 	
-	private void registrar()
+	private boolean registrar()
 	{
-	
+		
 		GCMRegistrar.checkManifest(this);
 		
 		// Get GCM registration id
@@ -189,11 +187,12 @@ public class Login  extends Activity{
 		if (regId.equals("")) {
 			// Registration is not present, register now with GCM			
 			GCMRegistrar.register(this, SENDER_ID);
+			return false;
 		} else {
 			// Device is already registered on GCM
 			if (GCMRegistrar.isRegisteredOnServer(this)) {
 				// Skips registration.				
-				Toast.makeText(getApplicationContext(), "Already registered with GCM", Toast.LENGTH_LONG).show();
+		//		Toast.makeText(getApplicationContext(), "Already registered with GCM", Toast.LENGTH_LONG).show();
 			} else {
 				// Try to register again, but not in the UI thread.
 				// It's also necessary to cancel the thread onDestroy(),
@@ -206,6 +205,7 @@ public class Login  extends Activity{
 						// Register on our server
 						// On server creates a new user
 						ServerUtilities.register(context, name, email, regId);
+						startActivity(new Intent(Login.this,MainActivity.class));
 						return null;
 					}
 
@@ -218,6 +218,7 @@ public class Login  extends Activity{
 				mRegisterTask.execute(null, null, null);
 			}
 		}
+		return true;
 	}
 	
 	
