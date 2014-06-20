@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.rsdev.blueflamewms.app.AppController;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -25,7 +27,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub AUTOINCREMENT
 		String query ="CREATE TABLE estados ("+_ID+" INTEGER PRIMARY KEY ," +
-				"fecha datetime default CURRENT_DATE ,usuario TEXT , avatar TEXT , estado INTEGER)";
+				"fecha datetime default CURRENT_DATE ,usuario TEXT , avatar TEXT , estado INTEGER, lastlog datetime CURRENT_DATE)";
 			db.execSQL(query);
 	   Log.d("RS", "CREANDO LA DB ID:" +_ID);   
 	}
@@ -36,7 +38,13 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		db.execSQL("DROP TABLE IF EXISTS estados");
 		onCreate(db);
 	}
-	public void GuardarEstado(String user, String avatar)
+	public void drop()
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.execSQL("DROP TABLE IF EXISTS estados");
+		onCreate(db);
+	}
+	public void GuardarEstado(String user, String avatar, String Lastlog)
 	{	
 		EliminarTodo();
 		ContentValues valores = new ContentValues();
@@ -59,13 +67,14 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		
 		String[] Columnas = {_ID,"usuario","avatar","fecha","estado"};
 		Cursor c = this.getReadableDatabase().query("estados", Columnas, null, null, null,null,null);
-		int id,usuario,avatar,estado,fecha;
+		int usuario,avatar,estado,fecha,lt;
 		
-		id = c.getColumnIndex(_ID);
+		
 		usuario =  c.getColumnIndex("usuario");
 		avatar = c.getColumnIndex("avatar");
 		estado = c.getColumnIndex("estado");
 		fecha =  c.getColumnIndex("fecha");
+		lt = c.getColumnIndex("lastlog");
 		
 		int count = c.getCount();
 		if( count== 0)
@@ -76,12 +85,12 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		
 		String fechas = c.getString(fecha);
 	
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			Date f1 = format.parse(fechas);
 			Date f2 = new Date();
 			f2 = format.parse(format.format(f2));
-			if(f1lf2)
+			if(!f1.toString().equals(f2.toString()))
 			{
 				return 0;
 			}
@@ -89,7 +98,9 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		} catch (ParseException e) {
 	
 		}
-		
+		AppController.USERNAME =c.getString(usuario);
+		AppController.AVATAR = c.getString(avatar);
+		AppController.LASTLOGIN = c.getString(lt);
 		
 		return 1;
 	}

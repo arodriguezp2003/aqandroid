@@ -1,0 +1,75 @@
+package com.rsdev.blueflamewms;
+
+
+
+import com.rsdev.blueflamewms.sql.DatabaseHandler;
+import android.app.Activity;
+import android.app.ActionBar;
+import android.app.Fragment;
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.os.StrictMode;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.os.Build;
+import android.content.Intent;
+import android.database.Cursor;
+
+public class MainActivity extends Activity {
+	 private static String tag_json_arry = "json_array_req";
+	 private static  String URL = "http://aquacontrol.la/api/v1/apis/autentifica/";
+
+	 EditText user,pass;
+	 TextView error;
+	 Button login ;
+	 ProgressDialog loading;
+	 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    	// TODO Auto-generated method stub
+    	super.onCreate(savedInstanceState);
+    	setContentView(R.layout.activity_main);
+    	StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+ 	    StrictMode.setThreadPolicy(policy); 
+ 		 
+ 	    DatabaseHandler data = new DatabaseHandler(this);
+ 	    //data.EliminarTodo();
+ 	    if(data.Estado()==1) startActivity(new Intent(MainActivity.this,menu.class));
+ 	     
+ 	    user  = (EditText)findViewById(R.id.xUsuario);
+ 	    pass  = (EditText)findViewById(R.id.xPassword);
+ 	    login = (Button)findViewById(R.id.xAceptar);
+ 	    error = (TextView)findViewById(R.id.lAlerta);
+ 	    loading = new ProgressDialog(MainActivity.this);
+ 	    loading.setMessage("Espere un momento");
+ 	    
+ 	    login.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(user.getText().toString().isEmpty())
+				{
+					error.setText("Ingrese Datos");
+					error.setVisibility(View.VISIBLE);
+					return;
+				}
+				if(pass.getText().toString().isEmpty())
+				{
+					error.setText("Ingrese Datos");
+					error.setVisibility(View.VISIBLE);
+					return;
+				}
+				
+				loading.show();
+				
+			}
+		});
+    }
+}

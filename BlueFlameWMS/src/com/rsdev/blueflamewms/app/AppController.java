@@ -18,6 +18,16 @@ public class AppController extends Application {
     private ImageLoader mImageLoader;
  
     private static AppController mInstance;
+
+	public static String USERNAME;
+	public static String RutaImgAvatar ="http://inventario.arodriguezp.com/uploads/users/";
+	public static String AVATAR;
+	public static String LASTLOGIN;
+	
+	public static String CLIENTE;
+	public static String COD_CLIENTE;
+
+	public static String INVENTARIO;
  
     @Override
     public void onCreate() {

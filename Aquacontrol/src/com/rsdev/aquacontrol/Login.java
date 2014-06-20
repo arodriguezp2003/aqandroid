@@ -163,6 +163,7 @@ public class Login  extends Activity{
 			 
 			                    @Override
 			                    public void onErrorResponse(VolleyError error) {
+			                    	Log.d("RS",error.getMessage());
 			                    	errores.setText("Es necesario una conexion a internet");
 									errores.setVisibility(View.VISIBLE);
 			                        pDialog.hide();

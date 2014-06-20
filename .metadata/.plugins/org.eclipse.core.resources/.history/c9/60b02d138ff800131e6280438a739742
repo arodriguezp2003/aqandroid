@@ -1,0 +1,34 @@
+package com.rsdev.blueflamewms;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.rsdev.blueflamewms.app.AppController;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.widget.ImageView;
+
+public class menu extends Activity {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.lmenu);
+		
+		 final ImageView img = (ImageView)findViewById(R.id.xImage);
+		 
+		 if(AppController.AVATAR==null) return;
+		 
+		 ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+		 imageLoader.get(AppController.AVATAR, ImageLoader.getImageListener(
+	                img, R.drawable.ico_loading, R.drawable.ico_error));
+	}
+	 @Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		 if (keyCode == KeyEvent.KEYCODE_BACK) {
+		     //preventing default implementation previous to android.os.Build.VERSION_CODES.ECLAIR
+		     return true;
+		     }
+		     return super.onKeyDown(keyCode, event);    
+	}
+}

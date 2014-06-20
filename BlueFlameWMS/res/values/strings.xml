@@ -7,4 +7,10 @@
 	<string name="auth">Login</string>
     <string name="user">Usuario</string>
     <string name="password">Password</string>
+    
+     <string name="btn_TareaConteoEstandar">Conteo Standard</string>
+    <string name="btn_TareaConteoEstandarVAL">Validacion Standard</string>
+    <string name="btn_tare_conteo_peso">Conteo Peso Variable</string>
+    <string name="btn_tare_conteo_pesoVAL">Validacion Variable</string>
+     <string name="btn_AceptarCliente">Aceptar</string>
 </resources>

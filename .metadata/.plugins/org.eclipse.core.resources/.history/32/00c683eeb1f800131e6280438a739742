@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:fillViewport="true">
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:background="#ffffff">
+ 
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fondo"
+        android:paddingBottom="10dp" >
+
+        <ImageView
+            android:id="@+id/xImage"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/btn" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/xUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Alejandro Rodriguez Peña"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/xUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="0dp"
+                android:text="Ultimo Login:"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/xLastLog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="0dp"
+                android:text="Ultimo Login:"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+    </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/footer"
+      android:layout_width="fill_parent"
+      android:layout_height="100dip"
+      android:layout_alignParentBottom="true"
+      android:background="@drawable/fondo" >
+
+      <ImageView
+          android:id="@+id/logosss"
+          android:layout_width="match_parent"
+          android:padding="10dp"
+          android:layout_height="80dp"
+          android:src="@drawable/logos"
+        />
+
+        </LinearLayout>
+     
+  <LinearLayout
+         android:id="@+id/CUERPO"
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="20dip"
+          android:layout_marginTop="80dp"
+         >
+
+	  <Button
+	    android:id="@+id/btn_CS"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dp"
+	    android:background="@drawable/btn"
+	    android:text="@string/btn_TareaConteoEstandar"
+	    android:textColor="@drawable/text_btn" />
+	
+	    <Button
+	    android:id="@+id/btn_CV"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dp"
+	    android:background="@drawable/btn"
+	    android:text="@string/btn_tare_conteo_peso"
+	    android:textColor="@drawable/text_btn" />
+	
+	    <Button
+	    android:id="@+id/btn_CSV"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dp"
+	    android:background="@drawable/btn"
+	    android:text="@string/btn_TareaConteoEstandarVAL"
+	    android:textColor="@drawable/text_btn" />
+	
+	    <Button
+	    android:id="@+id/btn_CVV"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dp"
+	    android:background="@drawable/btn"
+	    android:text="@string/btn_tare_conteo_pesoVAL"
+	    android:textColor="@drawable/text_btn" />
+	    
+	     <Button
+	    android:id="@+id/Logout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dp"
+	    android:background="@drawable/btn"
+	    android:text="Logout"
+	    android:textColor="@drawable/text_btn" />
+    </LinearLayout>
+  </RelativeLayout>
+  
+</ScrollView>

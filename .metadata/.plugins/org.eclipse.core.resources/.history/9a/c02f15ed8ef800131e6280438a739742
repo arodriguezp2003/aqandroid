@@ -1,0 +1,22 @@
+package com.rsdev.blueflamewms;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.KeyEvent;
+
+public class menu extends Activity {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.lmenu);
+	}
+	 @Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		 if (keyCode == KeyEvent.KEYCODE_BACK) {
+		     //preventing default implementation previous to android.os.Build.VERSION_CODES.ECLAIR
+		     return true;
+		     }
+		     return super.onKeyDown(keyCode, event);    
+	}
+}
