@@ -18,6 +18,19 @@
 <fullyQualifiedTypeName name="android.R.string"/>
 <fullyQualifiedTypeName name="com.rsdev.aquacontrol.MainActivity"/>
 <fullyQualifiedTypeName name="com.rsdev.aquacontrol.R"/>
-<fullyQualifiedTypeName name="com.rsdev.aquacontrol.Login"/>
 <fullyQualifiedTypeName name="android.support.v4.app.NotificationCompat"/>
+<fullyQualifiedTypeName name="com.rsdev.aquacontrol.Login"/>
+<fullyQualifiedTypeName name="com.rsdev.blueflamewms.R.layout"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="android.database.sqlite.SQLiteOpenHelper"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="android.provider.BaseColumns"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="android.content.ContentValues"/>
+<fullyQualifiedTypeName name="com.rsdev.blueflamewms.sql.DatabaseHandler"/>
+<fullyQualifiedTypeName name="android.database.Cursor"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="android.database.sqlite.SQLiteDatabase"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
 </qualifiedTypeNameHistroy>

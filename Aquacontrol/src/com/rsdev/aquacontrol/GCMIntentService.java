@@ -2,6 +2,9 @@ package com.rsdev.aquacontrol;
 
 import static com.rsdev.aquacontrol.utils.CommonUtilities.SENDER_ID;
 import static com.rsdev.aquacontrol.utils.CommonUtilities.displayMessage;
+
+import java.io.IOException;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -30,7 +33,12 @@ public class GCMIntentService extends GCMBaseIntentService {
         Log.i(TAG, "Device registered: regId = " + registrationId);
         displayMessage(context, "Your device registred with GCM");
        // Log.d("NAME", MainActivity.name);
-        ServerUtilities.register(context, Login.name, Login.email, registrationId);
+        try {
+			ServerUtilities.register(context, Login.name, Login.email, registrationId);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     /**
@@ -40,7 +48,12 @@ public class GCMIntentService extends GCMBaseIntentService {
     protected void onUnregistered(Context context, String registrationId) {
         Log.i(TAG, "Device unregistered");
         displayMessage(context, getString(R.string.gcm_unregistered));
-        ServerUtilities.unregister(context, registrationId);
+        try {
+			ServerUtilities.unregister(context, registrationId);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     /**

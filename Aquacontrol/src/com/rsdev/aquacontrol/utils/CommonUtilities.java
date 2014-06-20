@@ -6,7 +6,7 @@ import android.content.Intent;
 public final class CommonUtilities {
 	
 	// give your server registration url here
-    static final String SERVER_URL = "http://www.aquacontrol.la/api/v1/apis/registrar"; 
+    public static final String SERVER_URL = "http://www.aquacontrol.la/api/v1/apis/registrar"; 
 
     // Google project id
     public static  String SENDER_ID = "1090733239494"; 

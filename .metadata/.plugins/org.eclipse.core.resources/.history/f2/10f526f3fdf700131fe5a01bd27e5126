@@ -1,0 +1,93 @@
+package com.rsdev.blueflamewms.sql;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import static android.provider.BaseColumns._ID;
+public class DatabaseHandler extends SQLiteOpenHelper 
+{
+    static int VERSION = 1;
+ 
+	public DatabaseHandler(Context context) {
+		super(context, "WMS",null,VERSION);
+		// TODO Auto-generated constructor stub
+	}
+		
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+		// TODO Auto-generated method stub AUTOINCREMENT
+		String query ="CREATE TABLE estados ("+_ID+" INTEGER PRIMARY KEY ," +
+				"fecha datetime default CURRENT_DATE ,usuario TEXT , avatar TEXT , estado INTEGER)";
+			db.execSQL(query);
+	   Log.d("RS", "CREANDO LA DB ID:" +_ID);   
+	}
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) 
+	{
+		// TODO Auto-generated method stub
+		db.execSQL("DROP TABLE IF EXISTS estados");
+		onCreate(db);
+	}
+	public void GuardarEstado(String user, String avatar)
+	{	
+		EliminarTodo();
+		ContentValues valores = new ContentValues();
+		valores.put(_ID, 1);
+		valores.put("usuario", user);
+		valores.put("avatar", avatar);
+		valores.put("estado", 1);
+		this.getWritableDatabase().insert("estados",null, valores);
+		
+	}
+	public void EliminarTodo()
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.execSQL("DELETE FROM estados");
+		
+	}
+	
+	public int Estado()
+	{
+		
+		String[] Columnas = {_ID,"usuario","avatar","fecha","estado"};
+		Cursor c = this.getReadableDatabase().query("estados", Columnas, null, null, null,null,null);
+		int id,usuario,avatar,estado,fecha;
+		
+		id = c.getColumnIndex(_ID);
+		usuario =  c.getColumnIndex("usuario");
+		avatar = c.getColumnIndex("avatar");
+		estado = c.getColumnIndex("estado");
+		fecha =  c.getColumnIndex("fecha");
+		
+		int count = c.getCount();
+		if( count== 0)
+		{
+			return 0;
+		}
+		c.moveToFirst();
+		
+		String fechas = c.getString(fecha);
+	
+		SimpleDateFormat df1 = new SimpleDateFormat(fechas);
+
+		return c.getInt(estado);
+	}
+	
+	
+	public void open()
+	{
+		this.getWritableDatabase();
+	}
+	public void close()
+	{
+		
+	}
+	
+}

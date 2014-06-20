@@ -1,0 +1,5 @@
+package com.rsdev.blueflamewms.app;
+
+public class AppController {
+
+}

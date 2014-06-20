@@ -19,4 +19,6 @@
 			<item value="com.android.ide.eclipse.wizards.category"/>
 		</list>
 	</section>
+	<section name="ZipFileImportWizard">
+	</section>
 </section>

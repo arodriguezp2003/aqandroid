@@ -1,0 +1,24 @@
+package com.rsdev.blueflamewms;
+
+import android.app.Activity;
+import android.app.ActionBar;
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.os.Build;
+
+public class MainActivity extends Activity {
+	 private static String tag_json_arry = "json_array_req";
+	 private static  String URL = "http://aquacontrol.la/api/v1/apis/autentifica/";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    	// TODO Auto-generated method stub
+    	super.onCreate(savedInstanceState);
+    	setContentView(R.layout.activity_main);
+    }
+}

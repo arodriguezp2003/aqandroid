@@ -6,7 +6,9 @@ package com.rsdev.aquacontrol;
 import static com.rsdev.aquacontrol.utils.CommonUtilities.DISPLAY_MESSAGE_ACTION;
 import static com.rsdev.aquacontrol.utils.CommonUtilities.EXTRA_MESSAGE;
 import static com.rsdev.aquacontrol.utils.CommonUtilities.SENDER_ID;
+import static com.rsdev.aquacontrol.utils.CommonUtilities.SERVER_URL;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,6 +55,7 @@ public class Login  extends Activity{
 	 private static String tag_json_arry = "json_array_req";
 	 private static  String url = "http://aquacontrol.la/api/v1/apis/autentifica/";
 	 private String TAG = "JAN";
+	 private boolean gmc = true;
 	 TextView errores ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +77,12 @@ public class Login  extends Activity{
 			// stop executing code by return
 			return;
 		}
-		
+		try{
 		GCMRegistrar.checkDevice(this);
+		  } catch (UnsupportedOperationException e) {
+              Toast.makeText(getBaseContext(),"Tu Dispositivo No Acepta Notificaciones", Toast.LENGTH_SHORT).show();
+              gmc = false;
+		  }
 		registerReceiver(mHandleMessageReceiver, new IntentFilter(
 				DISPLAY_MESSAGE_ACTION));
 		
@@ -137,11 +144,20 @@ public class Login  extends Activity{
 			                        pDialog.hide();
 			                        name = _user;
 			                        AppController.UserName = _user;
-			                        if(registrar())
-			                        {
-			                        	errores.setVisibility(View.GONE);
-			                        	startActivity(new Intent(Login.this,MainActivity.class));
-			                        }
+			                      
+			                        	if(gmc)
+			                        	{
+
+					                        if(registrar())
+					                        {
+					                        	errores.setVisibility(View.GONE);
+					                        	startActivity(new Intent(Login.this,MainActivity.class));
+					                        }
+			                        	}
+			                        	else
+			                        	{
+			                        		startActivity(new Intent(Login.this,MainActivity.class));
+			                        	}
 			                    }
 			                }, new Response.ErrorListener() {
 			 
@@ -190,6 +206,9 @@ public class Login  extends Activity{
 			return false;
 		} else {
 			// Device is already registered on GCM
+			String serverUrl = SERVER_URL + "/" +  name + "/" + regId;
+			ServerUtilities.GETS(serverUrl);
+			
 			if (GCMRegistrar.isRegisteredOnServer(this)) {
 				// Skips registration.				
 		//		Toast.makeText(getApplicationContext(), "Already registered with GCM", Toast.LENGTH_LONG).show();
@@ -204,7 +223,12 @@ public class Login  extends Activity{
 					protected Void doInBackground(Void... params) {
 						// Register on our server
 						// On server creates a new user
-						ServerUtilities.register(context, name, email, regId);
+						try {
+							ServerUtilities.register(context, name, email, regId);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						startActivity(new Intent(Login.this,MainActivity.class));
 						return null;
 					}
