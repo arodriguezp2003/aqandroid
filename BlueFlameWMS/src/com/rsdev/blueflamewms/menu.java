@@ -30,9 +30,11 @@ public class menu extends Activity {
 		 last.setText(AppController.LASTLOGIN);
 		 
 		 TextView cliente = (TextView)findViewById(R.id.xcodCliente);
+		 TextView Inventario = (TextView)findViewById(R.id.xNint);
 		 
-		 cliente.setText(AppController.CLIENTE);
 		 
+		 cliente.setText(AppController.CLIENTE.getNombre());
+		 Inventario.setText(AppController.INVENTARIO);
 		 ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 		 imageLoader.get(AppController.AVATAR, ImageLoader.getImageListener(
 	                img, R.drawable.ico_loading, R.drawable.ico_error));

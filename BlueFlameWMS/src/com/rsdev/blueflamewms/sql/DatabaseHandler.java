@@ -10,7 +10,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import static android.provider.BaseColumns._ID;
@@ -64,15 +63,11 @@ public class DatabaseHandler extends SQLiteOpenHelper
 	
 	public int Estado()
 	{
-		
-		String[] Columnas = {_ID,"usuario","avatar","fecha","estado"};
+		String[] Columnas = {_ID,"usuario","avatar","fecha","estado","lastlog"};
 		Cursor c = this.getReadableDatabase().query("estados", Columnas, null, null, null,null,null);
-		int usuario,avatar,estado,fecha,lt;
-		
-		
+		int usuario,avatar,fecha,lt;
 		usuario =  c.getColumnIndex("usuario");
 		avatar = c.getColumnIndex("avatar");
-		estado = c.getColumnIndex("estado");
 		fecha =  c.getColumnIndex("fecha");
 		lt = c.getColumnIndex("lastlog");
 		

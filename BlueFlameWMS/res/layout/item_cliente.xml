@@ -1,16 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
- android:layout_width="match_parent"
- android:layout_height="match_parent"
+ android:layout_width="fill_parent"
+ android:layout_height="wrap_content"
  android:orientation="vertical"
- android:background="#FCF" >
+ android:padding="5dp"
+ android:drawable="@drawable/lista_colors"
+
+  >
+ 
     <TextView
-      android:id="@+id/tvName"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:text="Name" />
-   <TextView
-       android:id="@+id/tvHome"
+       android:id="@+id/tvNombre"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="HomeTown" />
+       android:text="Alejandro Rodriguez"
+       android:textAppearance="?android:attr/textAppearanceLarge" 
+        />
+    <TextView
+      android:id="@+id/tvRut"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="163275333" 
+     android:textAppearance="?android:attr/textAppearanceSmall" 
+     />
+   
 </LinearLayout>

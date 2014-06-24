@@ -17,6 +17,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import com.rsdev.blueflamewms.app.AppController;
 import com.rsdev.blueflamewms.sql.DatabaseHandler;
+import com.rsdev.blueflamewms.utils.f;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -43,7 +45,11 @@ public class MainActivity extends Activity {
 	 @Override
 	protected void onResume() {
 		super.onResume();
-	   if(datas.Estado()==1) startActivity(new Intent(MainActivity.this,menu.class));
+		datas = new DatabaseHandler(this);
+	   if(datas.Estado()==1) 
+	   {
+		   startActivity(new Intent(MainActivity.this,menu.class));
+	   }
 	}
 	 @Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -58,6 +64,12 @@ public class MainActivity extends Activity {
    
     	super.onCreate(savedInstanceState);
     	setContentView(R.layout.activity_main);
+    	f f = new f();
+    	f.ListarClientes();
+    	
+    	
+    	
+    	
     	StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
  	    StrictMode.setThreadPolicy(policy); 
  		 

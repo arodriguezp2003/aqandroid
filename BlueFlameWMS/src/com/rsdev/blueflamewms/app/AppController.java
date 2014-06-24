@@ -1,5 +1,8 @@
 package com.rsdev.blueflamewms.app;
 
+import java.util.List;
+
+import com.rsdev.blueflamewms.sql.Cliente;
 import com.rsdev.blueflamewms.utils.LruBitmapCache;
 import android.app.Application;
 import android.text.TextUtils;
@@ -24,12 +27,14 @@ public class AppController extends Application {
 	public static String AVATAR;
 	public static String LASTLOGIN;
 	
-	public static String CLIENTE;
-	public static String COD_CLIENTE;
+	public static Cliente CLIENTE;
 
 	public static String INVENTARIO;
 
 	public static boolean FINISH=false;
+	
+	
+	public static List<Cliente> CLIENTES;
  
     @Override
     public void onCreate() {

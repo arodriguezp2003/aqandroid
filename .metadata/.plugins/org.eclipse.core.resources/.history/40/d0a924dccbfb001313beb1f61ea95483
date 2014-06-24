@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+
+    
+  <TextView android:layout_width="fill_parent"
+      
+        android:layout_height="wrap_content"
+       android:textAppearance="?android:attr/textAppearanceLarge" 
+        android:text="Seleccione un Cliente"/>
+  
+  <ListView
+        android:id="@+id/sc_Clientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+    
+    <TextView android:layout_width="fill_parent"
+      
+        android:layout_height="wrap_content"
+       android:textAppearance="?android:attr/textAppearanceLarge" 
+        android:text="Ingrese N° Inventario"/>
+
+    <EditText
+        android:id="@+id/NInventario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+     <Button
+        android:id="@+id/btn_aceptacliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn"
+        android:text="@string/btn_AceptarCliente"
+        android:textColor="@drawable/text_btn" />
+</LinearLayout>

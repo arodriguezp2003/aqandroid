@@ -13,11 +13,16 @@
        android:textAppearance="?android:attr/textAppearanceLarge" 
         android:text="Seleccione un Cliente"/>
   
-    <Spinner
-        android:id="@+id/spinClientes"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-/>
+  <ListView
+      android:id="@+id/sc_Clientes"
+      android:layout_width="match_parent"
+      android:layout_height="328dp"
+      android:divider="#b5b5b5"
+      android:dividerHeight="1dp"
+      android:listSelector="@drawable/lista_colors"
+       >
+ 
+    </ListView>
     
     <TextView android:layout_width="fill_parent"
       

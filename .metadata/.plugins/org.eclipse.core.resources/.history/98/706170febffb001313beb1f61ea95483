@@ -1,0 +1,89 @@
+package com.rsdev.blueflamewms.sql;
+
+
+import java.util.Collections;
+import java.util.List;
+
+import com.android.volley.BuildConfig;
+import com.rsdev.blueflamewms.R;
+
+import android.content.Context;
+import android.os.Looper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+public class ClientesAdapter extends BaseAdapter
+{
+	private List<Cliente> clientes = Collections.emptyList();
+	private  Context context;
+	
+	public Context getContext()
+	{
+	    return this.context;
+	}
+
+	public void setContext(Context context)
+	{	  
+	    this.context = context;
+	}	
+	
+	public ClientesAdapter(Context context, List<Cliente> Cliente)
+	{
+		this.context = context;
+		this.clientes = Cliente;
+	}
+
+	public void updateClientes(List<Cliente> clientes) {
+		// TODO Auto-generated method stub
+		ThreadPreconditions.checkOnMainThread();
+		   this.clientes = clientes;
+		   notifyDataSetChanged();
+	}
+	 public static class ThreadPreconditions {
+		   public static void checkOnMainThread() {
+		       if (BuildConfig.DEBUG) {
+		           if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
+		               throw new IllegalStateException("Este metodo deberia ser llamado por el hilo principal");
+		           }
+		       }
+		   }
+	}
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return clientes.size();
+	}
+
+	@Override
+	public Cliente getItem(int position) {
+		// TODO Auto-generated method stub
+		return clientes.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		View rootView =  LayoutInflater.from(context)
+				.inflate(R.layout.item_cliente,parent,false);
+		
+		TextView rut = (TextView)rootView.findViewById(R.id.tvRut);
+		TextView nombre = (TextView)rootView.findViewById(R.id.tvNombre);
+		
+		Cliente cliente = getItem(position);
+		rut.setText(cliente.getRut());
+		nombre.setText(cliente.getNombre());
+		
+		return rootView;
+	}
+	
+	
+	
+}
