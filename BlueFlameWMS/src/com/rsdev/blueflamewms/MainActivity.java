@@ -128,6 +128,7 @@ public class MainActivity extends Activity {
 									String data = c.getString("first_name").toString() + " " + c.getString("last_name").toString();
 									AppController.USERNAME = data;
 									AppController.LASTLOGIN = c.getString("last_login").toString();
+									AppController.FINISH = false;
 									datas.GuardarEstado(AppController.USERNAME, AppController.AVATAR,AppController.LASTLOGIN  );
 								} catch (JSONException e) {
 						

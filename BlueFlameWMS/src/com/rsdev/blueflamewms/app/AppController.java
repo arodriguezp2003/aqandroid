@@ -28,6 +28,8 @@ public class AppController extends Application {
 	public static String COD_CLIENTE;
 
 	public static String INVENTARIO;
+
+	public static boolean FINISH=false;
  
     @Override
     public void onCreate() {

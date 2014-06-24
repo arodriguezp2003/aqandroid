@@ -32,7 +32,15 @@ import android.widget.Toast;
 public class SeleccionCliente extends Activity {
 	private static  String url = "http://inventario.arodriguezp.com/api/v1/apis/clientes/";
 	private static String tag_json_arry = "json_array_req";
-		@Override
+		
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if(AppController.FINISH) SeleccionCliente.this.finish();
+	}
+	
+	@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
 			super.onCreate(savedInstanceState);
@@ -43,7 +51,7 @@ public class SeleccionCliente extends Activity {
 			Button btn = (Button)findViewById(R.id.btn_aceptacliente);
 		    final EditText num =(EditText)findViewById(R.id.NInventario);
 			
-			
+		
 		    btn.setOnClickListener(new OnClickListener() {
 				
 				@Override

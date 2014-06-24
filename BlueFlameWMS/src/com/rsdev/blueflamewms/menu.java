@@ -29,6 +29,9 @@ public class menu extends Activity {
 		 TextView last = (TextView)findViewById(R.id.xLastLog);
 		 last.setText(AppController.LASTLOGIN);
 		 
+		 TextView cliente = (TextView)findViewById(R.id.xcodCliente);
+		 
+		 cliente.setText(AppController.CLIENTE);
 		 
 		 ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 		 imageLoader.get(AppController.AVATAR, ImageLoader.getImageListener(
@@ -44,6 +47,7 @@ public class menu extends Activity {
 				DatabaseHandler data = new DatabaseHandler(menu.this);
 				data.EliminarTodo();
 				menu.this.finish();
+				AppController.FINISH =true;
 				
 			}
 		});
