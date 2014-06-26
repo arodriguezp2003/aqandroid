@@ -1,0 +1,5 @@
+package com.rsdev.blueflamewms.sql;
+
+public class BaseHandler {
+
+}
