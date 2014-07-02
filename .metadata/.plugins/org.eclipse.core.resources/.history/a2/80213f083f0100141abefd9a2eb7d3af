@@ -1,0 +1,42 @@
+package com.rsdev.blueflamewms.sql;
+
+import static android.provider.BaseColumns._ID;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class BaseHandler extends SQLiteOpenHelper  {
+	private Articulos articulo;
+	public BaseHandler(Context context) {
+		super(context, "BaseWMS", null, 1);
+	
+	}
+
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+		// TODO Auto-generated method stub
+		db.execSQL(articulo.CreateDB());
+	}
+
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void CreateArticulos(int id, int cliente, String codcor, String sku, String descripcion,int unidad, int activo )
+	{
+		ContentValues valores = new ContentValues();
+		valores.put(_ID, 1);
+		valores.put("id", id);
+		valores.put("cliente", cliente);
+		valores.put("codcor", codcor);
+		valores.put("sku", sku);
+		valores.put("descripcion", descripcion);
+		valores.put("unidad", unidad);
+		valores.put("activo", activo);
+		this.getWritableDatabase().insert("articulos",null, valores);
+	}
+
+}

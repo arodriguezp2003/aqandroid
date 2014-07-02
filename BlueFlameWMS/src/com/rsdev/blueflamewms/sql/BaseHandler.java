@@ -1,8 +1,12 @@
 package com.rsdev.blueflamewms.sql;
 
 import static android.provider.BaseColumns._ID;
+
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -24,11 +28,38 @@ public class BaseHandler extends SQLiteOpenHelper  {
 		// TODO Auto-generated method stub
 		
 	}
+	public List<Articulos> ArticulosList(String where)
+	{
+		List<Articulos> art = null;
+		String[] w = {""};
+		SQLiteDatabase db = this.getWritableDatabase();
+		if(where.length()!=0)
+		{
+			w[0] = " where " + where; 
+		}
+		Cursor c = db.rawQuery("SELECT * FROM articulos ? ", w);
+		if (c.moveToFirst()) {
+		  
+		     do {
+		          Articulos a = new Articulos();
+		          a.setId(c.getString(0));
+		          a.setId(c.getString(1));
+		          a.setId(c.getString(2));
+		          a.setId(c.getString(3));
+		          a.setId(c.getString(4));
+		          a.setId(c.getString(5));
+		          a.setId(c.getString(6));
+		          
+		          art.add(a);
+		     } while(c.moveToNext());
+		}
+		return art;
+	}
+	
 	
 	public void CreateArticulos(int id, int cliente, String codcor, String sku, String descripcion,int unidad, int activo )
 	{
 		ContentValues valores = new ContentValues();
-		valores.put(_ID, 1);
 		valores.put("id", id);
 		valores.put("cliente", cliente);
 		valores.put("codcor", codcor);

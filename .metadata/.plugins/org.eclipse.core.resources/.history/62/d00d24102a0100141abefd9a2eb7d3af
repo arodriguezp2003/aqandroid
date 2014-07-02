@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+
+    
+  <TextView android:layout_width="match_parent"
+      
+        android:layout_height="match_parent"
+       android:textAppearance="?android:attr/textAppearanceLarge" 
+        android:text="Seleccione un Cliente"/>
+  
+  <ListView
+      android:id="@+id/sc_Clientes"
+      android:layout_width="match_parent"
+      android:layout_height="328dp"
+      android:divider="#b5b5b5"
+      android:dividerHeight="1dp"
+      android:listSelector="@drawable/lista_colors"
+       >
+ 
+    </ListView>
+ 
+</LinearLayout>

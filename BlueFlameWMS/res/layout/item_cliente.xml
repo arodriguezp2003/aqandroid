@@ -1,11 +1,9 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
- android:layout_width="fill_parent"
- android:layout_height="wrap_content"
- android:orientation="vertical"
- android:padding="5dp"
- android:drawable="@drawable/lista_colors"
-
-  >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:drawable="@drawable/lista_colors"
+    android:orientation="horizontal"
+    android:padding="5dp" >
  
     <TextView
        android:id="@+id/tvNombre"
@@ -14,12 +12,21 @@
        android:text="Alejandro Rodriguez"
        android:textAppearance="?android:attr/textAppearanceLarge" 
         />
+
     <TextView
-      android:id="@+id/tvRut"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:text="163275333" 
-     android:textAppearance="?android:attr/textAppearanceSmall" 
-     />
-   
-</LinearLayout>
+        android:id="@+id/tvRut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvNombre"
+        android:layout_below="@+id/tvNombre"
+        android:text="163275333"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+      <TextView
+        android:id="@+id/gato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text=">"
+        android:textAppearance="?android:attr/textAppearanceLarge" /> 
+</RelativeLayout>

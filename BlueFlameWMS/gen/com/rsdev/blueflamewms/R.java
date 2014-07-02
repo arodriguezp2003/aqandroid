@@ -36,29 +36,33 @@ public final class R {
         public static final int text_btn=0x7f02000b;
     }
     public static final class id {
-        public static final int CUERPO=0x7f08000e;
-        public static final int Logout=0x7f080013;
-        public static final int NInventario=0x7f080015;
-        public static final int action_settings=0x7f080017;
-        public static final int btn_CS=0x7f08000f;
-        public static final int btn_CSV=0x7f080011;
-        public static final int btn_CV=0x7f080010;
-        public static final int btn_CVV=0x7f080012;
-        public static final int btn_aceptacliente=0x7f080016;
-        public static final int footer=0x7f08000a;
+        public static final int CUERPO=0x7f08000f;
+        public static final int Logout=0x7f080015;
+        public static final int Offline=0x7f080014;
+        public static final int action_settings=0x7f08001b;
+        public static final int btn_CS=0x7f080010;
+        public static final int btn_CSV=0x7f080012;
+        public static final int btn_CV=0x7f080011;
+        public static final int btn_CVV=0x7f080013;
+        public static final int footer=0x7f08000b;
+        public static final int gato=0x7f080007;
         public static final int lAlerta=0x7f080001;
-        public static final int sc_Clientes=0x7f080014;
+        public static final int lAlertaSI=0x7f080017;
+        public static final int sc_Clientes=0x7f080016;
         public static final int tvNombre=0x7f080005;
         public static final int tvRut=0x7f080006;
         public static final int xAceptar=0x7f080004;
-        public static final int xImage=0x7f080007;
-        public static final int xLastLog=0x7f080009;
-        public static final int xNint=0x7f08000d;
+        public static final int xAceptarSI=0x7f08001a;
+        public static final int xClienteSI=0x7f080018;
+        public static final int xImage=0x7f080008;
+        public static final int xInventarioSI=0x7f080019;
+        public static final int xLastLog=0x7f08000a;
+        public static final int xNint=0x7f08000e;
         public static final int xPassword=0x7f080003;
-        public static final int xUsername=0x7f080008;
+        public static final int xUsername=0x7f080009;
         public static final int xUsuario=0x7f080002;
-        public static final int xcodCliente=0x7f08000c;
-        public static final int xcodCliente1=0x7f08000b;
+        public static final int xcodCliente=0x7f08000d;
+        public static final int xcodCliente1=0x7f08000c;
         public static final int xlogo=0x7f080000;
     }
     public static final class layout {
@@ -66,6 +70,7 @@ public final class R {
         public static final int item_cliente=0x7f030001;
         public static final int lmenu=0x7f030002;
         public static final int seleccioncliente=0x7f030003;
+        public static final int seleecione_inventario=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f070000;

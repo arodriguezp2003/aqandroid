@@ -1,0 +1,36 @@
+package com.rsdev.blueflamewms;
+
+import com.rsdev.blueflamewms.app.AppController;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class SeleecionInventario extends Activity {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.seleecione_inventario);
+		
+		TextView  cliente = (TextView)findViewById(R.id.xClienteSI);
+		TextView  inventario = (TextView)findViewById(R.id.xInventarioSI);
+		Button Aceptar = (Button)findViewById(R.id.xAceptarSI);
+		
+		cliente.setText("Cliente :" +AppController.CLIENTE.getNombre());
+		
+		
+		
+		Aceptar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+}

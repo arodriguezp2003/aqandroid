@@ -5,6 +5,7 @@ import com.rsdev.blueflamewms.app.AppController;
 import com.rsdev.blueflamewms.sql.DatabaseHandler;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class menu extends Activity {
+	 ProgressDialog loading;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -50,6 +52,21 @@ public class menu extends Activity {
 				data.EliminarTodo();
 				menu.this.finish();
 				AppController.FINISH =true;
+				
+			}
+		});
+		 
+	    Button offline = (Button)findViewById(R.id.Offline);
+	    
+	    offline.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				loading = new ProgressDialog(menu.this);
+				loading.setTitle("Espere un Momento");
+		 	    loading.setMessage("Descargando SKU");
+		 	    loading.show();
 				
 			}
 		});

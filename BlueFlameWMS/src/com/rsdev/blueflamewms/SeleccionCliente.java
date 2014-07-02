@@ -62,27 +62,11 @@ public class SeleccionCliente extends Activity {
 					
 					AppController.CLIENTE = cli;
 					
-				}
-			});
-		    
-		    final EditText num =(EditText)findViewById(R.id.NInventario);
-		    
-		    Button btn = (Button)findViewById(R.id.btn_aceptacliente);
-		    
-		    btn.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					if(num.getText().toString().isEmpty())
-					{
-						num.findFocus();
-						return;
-					}
+					startActivity(new Intent(SeleccionCliente.this,SeleecionInventario.class));	
 					
-					AppController.INVENTARIO = num.getText().toString();
-					startActivity(new Intent(SeleccionCliente.this, menu.class));
 				}
 			});
+		   
 		}
 }
 
