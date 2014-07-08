@@ -1,6 +1,5 @@
 package com.rsdev.blueflamewms;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,8 +13,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.Request.Method;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.rsdev.blueflamewms.app.AppController;
-import com.rsdev.blueflamewms.sql.Articulos;
-import com.rsdev.blueflamewms.sql.Cliente;
+
+import com.rsdev.blueflamewms.sql.BaseHandler;
+
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -109,14 +109,26 @@ public class SeleecionInventario extends Activity {
 						 
 						                    @Override
 						                    public void onResponse(JSONObject response) {
-						                    	
-						                    	
+						                    		BaseHandler base = new BaseHandler(SeleecionInventario.this);
+						                    		base.DropArticulos();
 						     						JSONArray cx;
 													try {
 														cx = response.getJSONArray("articulos");
 														for (int i = 0; i < cx.length(); i++) {
 							                             	JSONObject c = cx.getJSONObject(i);
-							                             	Articulos art = new Articulos();
+							                             	
+							                             	int _id = 0,_cliente=AppController.CLIENTE.getId(), _unidad=0,_activo=1;
+							                             	String   _codcor="", _sku="", _descripcion="";
+							                             	
+							                             	_id = Integer.parseInt(c.getString("id"));
+							                             	_unidad =  Integer.parseInt(c.getString("unidad"));
+							                             	_activo = Integer.parseInt(c.getString("activo"));
+							                             	_codcor = c.getString("codcor");
+							                             	_sku = c.getString("sku");
+							                             	_descripcion = c.getString("descripcion");
+							                             	
+							                             	base.CreateArticulos(_id, _cliente, _codcor, _sku, _descripcion, _unidad, _activo);
+							                             	
 							                             }
 													} catch (JSONException e) {
 														// TODO Auto-generated catch block
@@ -124,7 +136,7 @@ public class SeleecionInventario extends Activity {
 													}
 						     					
 						                             
-						                       
+												
 						                    	 loading.hide(); 
 						                    	startActivity(new Intent(SeleecionInventario.this,menu.class));
 						                    }

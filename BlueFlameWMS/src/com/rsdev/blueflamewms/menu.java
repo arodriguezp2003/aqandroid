@@ -6,6 +6,7 @@ import com.rsdev.blueflamewms.sql.DatabaseHandler;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -55,19 +56,14 @@ public class menu extends Activity {
 				
 			}
 		});
+		 Button Articulos = (Button)findViewById(R.id.btnArticulos);
 		 
-	    Button offline = (Button)findViewById(R.id.Offline);
-	    
-	    offline.setOnClickListener(new OnClickListener() {
+		 Articulos.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				loading = new ProgressDialog(menu.this);
-				loading.setTitle("Espere un Momento");
-		 	    loading.setMessage("Descargando SKU");
-		 	    loading.show();
-				
+				startActivity(new Intent(menu.this, ListadoArticulos.class));
 			}
 		});
 	}

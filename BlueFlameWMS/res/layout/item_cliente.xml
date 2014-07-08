@@ -17,8 +17,8 @@
         android:id="@+id/tvRut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvNombre"
-        android:layout_below="@+id/tvNombre"
+        android:layout_alignLeft="@+id/arNombre"
+        android:layout_below="@+id/arNombre"
         android:text="163275333"
         android:textAppearance="?android:attr/textAppearanceSmall" />
       <TextView

@@ -1,0 +1,79 @@
+package com.rsdev.blueflamewms.sql;
+
+import static android.provider.BaseColumns._ID;
+
+import java.util.List;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class BaseHandler extends SQLiteOpenHelper  {
+	private Articulos articulo;
+	public BaseHandler(Context context) {
+		super(context, "BaseWMS", null, 1);
+	
+	}
+
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+		// TODO Auto-generated method stub
+		db.execSQL(articulo.CreateDB());
+	}
+
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		// TODO Auto-generated method stub
+		
+	}
+	public List<Articulos> ArticulosList(String where)
+	{
+		List<Articulos> art = null;
+		String[] w = {""};
+		SQLiteDatabase db = this.getWritableDatabase();
+		if(where.length()!=0)
+		{
+			w[0] = " where " + where; 
+		}
+		Cursor c = db.rawQuery("SELECT * FROM articulos ? ", w);
+		if (c.moveToFirst()) {
+		  
+		     do {
+		          Articulos a = new Articulos();
+		          a.setId(c.getString(0));
+		          a.setId(c.getSting(1));
+		          a.setId(c.getString(2));
+		          a.setId(c.getString(3));
+		          a.setId(c.getString(4));
+		          a.setId(c.getString(5));
+		          a.setId(c.getString(6));
+		          
+		          art.add(a);
+		     } while(c.moveToNext());
+		}
+		return art;
+	}
+	
+	
+	public void CreateArticulos(int id, int cliente, String codcor, String sku, String descripcion,int unidad, int activo )
+	{
+		ContentValues valores = new ContentValues();
+		valores.put("id", id);
+		valores.put("cliente", cliente);
+		valores.put("codcor", codcor);
+		valores.put("sku", sku);
+		valores.put("descripcion", descripcion);
+		valores.put("unidad", unidad);
+		valores.put("activo", activo);
+		this.getWritableDatabase().insert("articulos",null, valores);
+	}
+	public void DropArticulos()
+	{
+		String sql = "DROP FROM ARTICULOS";
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.execSQL(sql);
+	}
+
+}

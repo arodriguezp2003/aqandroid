@@ -1,7 +1,8 @@
 package com.rsdev.blueflamewms.sql;
 
-import static android.provider.BaseColumns._ID;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -30,7 +31,7 @@ public class BaseHandler extends SQLiteOpenHelper  {
 	}
 	public List<Articulos> ArticulosList(String where)
 	{
-		List<Articulos> art = null;
+		List<Articulos> art =  new ArrayList<Articulos>();;
 		String[] w = {""};
 		SQLiteDatabase db = this.getWritableDatabase();
 		if(where.length()!=0)
@@ -68,6 +69,12 @@ public class BaseHandler extends SQLiteOpenHelper  {
 		valores.put("unidad", unidad);
 		valores.put("activo", activo);
 		this.getWritableDatabase().insert("articulos",null, valores);
+	}
+	public void DropArticulos()
+	{
+		String sql = "DROP FROM ARTICULOS";
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.execSQL(sql);
 	}
 
 }

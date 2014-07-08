@@ -37,9 +37,9 @@ public class ClientesAdapter extends BaseAdapter
 	}	
 	
 	public ClientesAdapter(Activity a, List<Cliente> d,Resources resLocal) {
-         activity = a;
-         clientes=d;
-         res = resLocal;
+          activity = a;
+          clientes=d;
+          res = resLocal;
           inflater = ( LayoutInflater )activity.
                                       getSystemService(Context.LAYOUT_INFLATER_SERVICE);   
  }

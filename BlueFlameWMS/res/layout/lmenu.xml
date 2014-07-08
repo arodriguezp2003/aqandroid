@@ -156,12 +156,12 @@
 	    android:text="@string/btn_tare_conteo_pesoVAL"
 	    android:textColor="@drawable/text_btn" />
 	       <Button
-	    android:id="@+id/Offline"
+	    android:id="@+id/btnArticulos"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_marginTop="10dp"
 	    android:background="@drawable/btn"
-	    android:text="Modo Offline"
+	    android:text="Articulos"
 	    android:textColor="@drawable/text_btn" />
 	     <Button
 	    android:id="@+id/Logout"

@@ -1,0 +1,130 @@
+package com.rsdev.blueflamewms.sql;
+
+
+import java.util.Collections;
+import java.util.List;
+
+import com.android.volley.BuildConfig;
+import com.rsdev.blueflamewms.R;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
+import android.os.Looper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+public class ClientesAdapter extends BaseAdapter
+{ 
+	private Activity activity;
+	public Resources res;
+	private List<Cliente> clientes = Collections.emptyList();
+	private  Context context;
+	private static LayoutInflater inflater=null;
+
+	 
+	public Context getContext()
+	{
+	    return this.context;
+	}
+
+	public void setContext(Context context)
+	{	  
+	    this.context = context;
+	}	
+	
+	public ClientesAdapter(Activity a, List<Cliente> d,Resources resLocal) {
+          activity = a;
+          clientes=d;
+          res = resLocal;
+          inflater = ( LayoutInflater )activity.
+                                      getSystemService(Context.LAYOUT_INFLATER_SERVICE);   
+ }
+
+	public void updateClientes(List<Cliente> clientes) {
+		// TODO Auto-generated method stub
+		ThreadPreconditions.checkOnMainThread();
+		   this.clientes = clientes;
+		   notifyDataSetChanged();
+	}
+	 public static class ThreadPreconditions {
+		   public static void checkOnMainThread() {
+		       if (BuildConfig.DEBUG) {
+		           if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
+		               throw new IllegalStateException("Este metodo deberia ser llamado por el hilo principal");
+		           }
+		       }
+		   }
+	}
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return clientes.size();
+	}
+
+	@Override
+	public Cliente getItem(int position) {
+		// TODO Auto-generated method stub
+		return clientes.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		
+		 View vi = convertView;
+         ViewHolder holder;
+         Cliente tempValues;
+         if(convertView==null)
+         {
+        	 vi = inflater.inflate(R.layout.item_cliente, null);
+        	 holder = new ViewHolder();
+             holder.rut = (TextView) vi.findViewById(R.id.arRut);
+             holder.nombre=(TextView)vi.findViewById(R.id.arNombre);
+             
+             vi.setTag( holder );
+         }
+         else 
+             holder=(ViewHolder)vi.getTag();
+         if(clientes.size()<=0)
+         {
+             holder.rut.setText("No Data");
+              
+         }
+         else
+         {
+             /***** Get each Model object from Arraylist ********/
+             tempValues=null;
+             tempValues = clientes.get(position);
+              
+             /************  Set Model values in Holder elements ***********/
+
+              holder.rut.setText(tempValues.getRut());
+              holder.nombre.setText(tempValues.getNombre());
+              
+               
+              /******** Set Item Click Listner for LayoutInflater for each row *******/
+
+            //  vi.setOnClickListener(new OnItemClickListener( position ));
+         }
+         return vi;
+	}
+    public static class ViewHolder{
+        
+        public TextView rut;
+        public TextView nombre;
+
+ 
+    }
+	
+	
+	
+}
