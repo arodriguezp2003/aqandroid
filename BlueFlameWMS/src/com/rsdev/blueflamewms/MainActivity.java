@@ -83,6 +83,11 @@ public class MainActivity extends Activity {
  	    error = (TextView)findViewById(R.id.lAlerta);
  	    loading = new ProgressDialog(MainActivity.this);
  	    loading.setMessage("Espere un momento");
+ 	    if(AppController.DEV)
+ 	    {
+ 	    	user.setText("superadmin");
+ 	    	pass.setText("Ar9844609");
+ 	    }
  	    
  	    login.setOnClickListener(new OnClickListener() {
 			

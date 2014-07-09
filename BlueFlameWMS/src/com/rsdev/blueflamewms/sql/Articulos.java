@@ -57,7 +57,7 @@ public class Articulos
  
 	public  String CreateDB()
 	{
-		return "CREATE TABLE Articulos (id INTEGER PRIMARY KEY, " +
+		return "CREATE TABLE ARTICULOS (id INTEGER PRIMARY KEY, " +
 				"idcliente INTEGER," +
 				"codcor TEXT," +
 				"sku TEXT," +

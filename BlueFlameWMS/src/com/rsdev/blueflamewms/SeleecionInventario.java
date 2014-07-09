@@ -30,6 +30,8 @@ import android.widget.TextView;
 public class SeleecionInventario extends Activity {
 	private String URL ="http://inventario.arodriguezp.com/api/v1/apis/inventario/"; 
 	private String URLART ="http://inventario.arodriguezp.com/api/v1/apis/articulos/";
+	BaseHandler base;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -43,7 +45,8 @@ public class SeleecionInventario extends Activity {
 		
 		cliente.setText("Cliente: " +AppController.CLIENTE.getNombre());
 		
-		
+		base = new BaseHandler(SeleecionInventario.this);
+		//base.DropArticulos();
 		
 		Aceptar.setOnClickListener(new OnClickListener() {
 			
@@ -96,7 +99,7 @@ public class SeleecionInventario extends Activity {
 		                 }
 
 							private void Avanzar() {
-								// TODO Auto-generated method stub
+			
 								final ProgressDialog loading;
 								loading = new ProgressDialog(SeleecionInventario.this);
 								loading.setTitle("Espere un Momento");
@@ -109,8 +112,7 @@ public class SeleecionInventario extends Activity {
 						 
 						                    @Override
 						                    public void onResponse(JSONObject response) {
-						                    		BaseHandler base = new BaseHandler(SeleecionInventario.this);
-						                    		base.DropArticulos();
+						                    		base.EliminarTodo();
 						     						JSONArray cx;
 													try {
 														cx = response.getJSONArray("articulos");
@@ -121,7 +123,7 @@ public class SeleecionInventario extends Activity {
 							                             	String   _codcor="", _sku="", _descripcion="";
 							                             	
 							                             	_id = Integer.parseInt(c.getString("id"));
-							                             	_unidad =  Integer.parseInt(c.getString("unidad"));
+							                             	_unidad =  Integer.parseInt(c.getString("idunidad"));
 							                             	_activo = Integer.parseInt(c.getString("activo"));
 							                             	_codcor = c.getString("codcor");
 							                             	_sku = c.getString("sku");

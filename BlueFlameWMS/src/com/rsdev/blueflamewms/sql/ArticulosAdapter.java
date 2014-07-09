@@ -72,7 +72,7 @@ public class ArticulosAdapter extends BaseAdapter {
         Articulos tempValues;
         if(convertView==null)
         {
-       	    vi = inflater.inflate(R.layout.item_cliente, null);
+       	    vi = inflater.inflate(R.layout.item_articulo, null);
        	    holder = new ViewHolder();
             holder.sku = (TextView) vi.findViewById(R.id.arSku);
             holder.nombre=(TextView)vi.findViewById(R.id.arNombre);

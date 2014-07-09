@@ -41,6 +41,16 @@
              android:name="com.rsdev.blueflamewms.SeleecionInventario"
           	 android:label="Ingrese Nº Inventario" >
         </activity>
+        <activity
+		     android:theme="@android:style/Theme.Light"
+             android:name="com.rsdev.blueflamewms.ListadoArticulos"
+          	 android:label="Listado de SKU" >
+        </activity>
+        <activity
+		     android:theme="@android:style/Theme.Light"
+             android:name="com.rsdev.blueflamewms.detalle_articulo"
+          	 android:label="Detalle de SKU" >
+        </activity>
     </application>
 
 </manifest>

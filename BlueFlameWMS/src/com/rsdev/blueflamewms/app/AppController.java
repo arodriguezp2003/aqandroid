@@ -2,11 +2,13 @@ package com.rsdev.blueflamewms.app;
 
 import java.util.List;
 
+import com.rsdev.blueflamewms.sql.Articulos;
 import com.rsdev.blueflamewms.sql.Cliente;
 import com.rsdev.blueflamewms.utils.LruBitmapCache;
+
 import android.app.Application;
 import android.text.TextUtils;
- 
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -28,11 +30,12 @@ public class AppController extends Application {
 	public static String LASTLOGIN;
 	
 	public static Cliente CLIENTE;
+	public static Articulos ARTICULO;
 
 	public static String INVENTARIO;
 
 	public static boolean FINISH=false;
-	
+	public static boolean DEV = true;
 	
 	public static List<Cliente> CLIENTES;
  
