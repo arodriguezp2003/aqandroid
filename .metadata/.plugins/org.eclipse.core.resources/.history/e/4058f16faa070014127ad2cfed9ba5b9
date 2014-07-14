@@ -1,0 +1,36 @@
+package cl.tkpass.validador.sql;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class BaseHandler extends SQLiteOpenHelper{
+
+	public BaseHandler(Context context) {
+		super(context, "TKVALIDA",null,1);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+		// TODO Auto-generated method stub
+		Brazaletes b = new Brazaletes();
+		db.execSQL(b.CreateDB());
+	}
+
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public Brazaletes BrazaleteWhere(String Data)
+	{
+		Brazaletes br = new Brazaletes();
+		String[] where = {Data};
+		Cursor c = db.rawQuery("SELECT * FROM BRAZALETES WHERE BRAZALETE = ? ", where);
+		return br;
+	}
+}

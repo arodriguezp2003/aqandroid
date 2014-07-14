@@ -1,0 +1,117 @@
+package cl.tkpass.validador;
+
+
+
+
+import java.text.ParseException;
+
+
+import cl.tkpass.validador.app.AppController;
+import cl.tkpass.validador.util.verifica;
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
+public class MainActivity extends Activity {
+	private EditText Barra;
+	private TextView Leyenda;
+  @Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
+							 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		
+		if(AppController.DEV)
+		{
+			setContentView(R.layout.debug_layout);
+			Barra = (EditText)findViewById(R.id.dxBarra);
+			Leyenda = (TextView)findViewById(R.id.dLeyenda);
+		}
+		else
+		{
+			setContentView(R.layout.main_activity);
+		}
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(Barra.getWindowToken(), 0);		
+		
+		Barra.setFocusableInTouchMode(true);
+		Barra.requestFocus();
+		Barra.setText("353040-10072014-006-986532-GABRIEL MESA");
+		Barra.setOnKeyListener(new View.OnKeyListener() {
+		    public boolean onKey(View v, int keyCode, KeyEvent event) {
+		        // If the event is a key-down event on the "enter" button
+		        if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+		            (keyCode == KeyEvent.KEYCODE_ENTER)) {
+		          // Perform action on key press
+		        	
+		        	
+		        	
+		            verifica vr = new  verifica(MainActivity.this);
+		            try {
+		            	
+		            	boolean y = vr.Verificar_Brazalete(Barra.getText().toString());
+		            		
+		            	
+						Leyenda.setText(vr.Mensaje);
+						Accion(vr.Mensaje,y);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        	//Barra.setText("");
+		          return true;
+		        }
+		        return false;
+		    }
+
+			private void Accion(String txt, boolean bien) {
+		
+				if(bien){
+				Toast toast3 = new Toast(getApplicationContext());
+				 
+		        LayoutInflater inflater = getLayoutInflater();
+		        View layout = inflater.inflate(R.layout.alerta_exitosa,
+		                        (ViewGroup) findViewById(R.id.alerta_exitosa));
+		        TextView txtMsg2 = (TextView)layout.findViewById(R.id.ae_welcome);
+		        TextView txtMsg = (TextView)layout.findViewById(R.id.aeName);
+		        txtMsg2.setText("Bienvenido | Welcome :");
+		        txtMsg.setText(txt);
+		 
+		        toast3.setDuration(Toast.LENGTH_LONG);
+		        toast3.setView(layout);
+		        toast3.show();
+				}
+				else
+				{
+					Toast toast3 = new Toast(getApplicationContext());
+					 
+			        LayoutInflater inflater = getLayoutInflater();
+			        View layout = inflater.inflate(R.layout.alerta_error,
+			                        (ViewGroup) findViewById(R.id.alerta_error));
+			        TextView txtMsg2 = (TextView)layout.findViewById(R.id.aer_welcome);
+			        TextView txtMsg = (TextView)layout.findViewById(R.id.aerName);
+			        txtMsg2.setText("Alerta: ");
+			        txtMsg.setText(txt);
+			 
+			        toast3.setDuration(Toast.LENGTH_LONG);
+			        toast3.setView(layout);
+			        toast3.show();
+				}
+				
+			}
+		});
+		
+  }
+
+}

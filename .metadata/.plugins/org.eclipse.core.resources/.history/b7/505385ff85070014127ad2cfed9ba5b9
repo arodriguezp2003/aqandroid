@@ -1,0 +1,35 @@
+package com.rsdev.prueba;
+
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.KeyEvent;
+
+import android.view.View;
+import android.view.View.OnKeyListener;
+
+import android.widget.EditText;
+import android.widget.TextView;
+
+
+public class MainActivity extends Activity {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.mainactivity);
+		
+		final EditText barra = (EditText)findViewById(R.id.xBarra);
+		final TextView leyenda = (TextView)findViewById(R.id.lBarra);
+		
+		barra.setOnKeyListener(new OnKeyListener() {
+			@Override
+		    public boolean onKey(View v, int keyCode, KeyEvent event) {
+		        if(keyCode == 66) {
+		        	leyenda.setText(barra.getText());
+		        }
+		        return false;
+		    }
+		});
+	}
+}

@@ -1,0 +1,195 @@
+package cl.tkpass.validador.util;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+import cl.tkpass.validador.sql.BaseHandler;
+import cl.tkpass.validador.sql.Brazaletes;
+
+public class verifica {
+		private Context context ;
+		public  String Mensaje;
+		public int Tipo;
+		public verifica(Context con) {
+			context= con;
+		}
+		public boolean Verificar_Brazalete(String data) throws ParseException
+		{
+			//1 verifcar si el brazalete existe en la db
+			BaseHandler h = new BaseHandler(this.context);
+			List<Brazaletes> lt = new ArrayList<Brazaletes>();
+			lt = h.BrazaleteWhere(data);
+			if(lt.size()>0)
+			{
+				//Verificar si se valido dentro de los 5 minutos
+				Brazaletes br = new Brazaletes();
+				br = lt.get(0);
+				
+				Date FechaActual = new Date();
+				Date FechaV = br.getFecha();
+				
+				long t=FechaV.getTime();
+				Date FechaNueva=new Date(t + (5 * 60000));
+				
+				if(!FechaNueva.before(FechaActual))
+				{
+					this.Mensaje =  "Tu Brazalete ya fue registrado";
+					this.Tipo = -1;
+					return false;
+				}
+				
+			}
+
+			String[] p = data.split("-");
+            String servicio = p[2];
+            String key = p[3];
+            String Nombre = p[4];
+            String _fecha = p[1].substring(0, 2) + "/" + p[1].substring(2, 4) + "/" + p[1].substring(4);
+         
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Date FechaBr =  format.parse(_fecha);
+            Date FechaHoy = new Date();
+            
+            if(servicio == "006")
+            {
+            	if(FechaHoy.compareTo(FechaBr)==false)
+            	{
+            		this.Mensaje ="Fecha invalida, acércate al Info Center mas Cercano";
+            		return false;
+            	}
+            }
+            if(servicio == "054")
+            {
+            	this.Mensaje ="Fecha invalida, acércate al Info Center mas Cercano";
+            	return false;            	
+            }            
+            if(servicio == "055")
+            {
+            	this.Mensaje ="Fecha invalida, acércate al Info Center mas Cercano";
+            	return false;            	
+            }
+            if(servicio == "064")
+            {
+            	this.Mensaje ="La Fecha del Brazalete no es valida";
+            	return false;            	
+            }
+            
+        	this.Mensaje ="La Fecha del Brazalete no es valida";
+        	return false;    
+            /*
+            switch (servicio)
+            {
+
+                case "006":
+                    if (fecha != DateTime.Parse(DateTime.Today.ToShortDateString()))
+                    {
+
+                        xDatosNO.Text = "Fecha invalida, acércate al Info Center mas Cercano";
+                        Log(dato, "Fecha invalida, acércate al Info Center mas Cercano");
+                        ERROR.Begin();
+                        return;
+                    }
+
+                    break;
+                case "054":
+                    if (fecha != DateTime.Parse(DateTime.Today.ToShortDateString()))
+                    {
+                        xDatosNO.Text = ("Fecha invalida, acércate al Info Center mas Cercano");
+                        Log(dato, "Fecha invalida, acércate al Info Center mas Cercano");
+                        ERROR.Begin();
+                        return;
+                    }
+                    if (DateTime.Now < DateTime.Parse(DateTime.Today.ToShortDateString() + " 15:20"))
+                    {
+                        xDatosNO.Text = ("Este es un Servicio Express, debe abordar a las 15:20 ");
+                        Log(dato, "Este es un Servicio Express, debe abordar a las 15:20 ");
+                        ERROR.Begin();
+                        return;
+                    }
+                    break;
+                case "055":
+                    //03022014-059-12345-alejandro
+                    DateTime actual = DateTime.Parse(DateTime.Today.ToShortDateString());
+
+                    if (fecha != actual)
+                    {
+                        if (fecha.AddDays(1) != actual)
+                        {
+                            xDatosNO.Text = ("Fecha invalida, acércate al Info Center mas Cercano");
+                            Log(dato, "Fecha invalida, acércate al Info Center mas Cercano");
+                            ERROR.Begin();
+                            return;
+                        }
+
+                    }
+
+                    break;
+
+                case "064":
+                    //03022014-059-12345-alejandro
+                    DateTime actual2 = DateTime.Parse(DateTime.Today.ToShortDateString());
+
+                    if (fecha != actual2)
+                    {
+                        if (fecha.AddDays(1) != actual2)
+                        {
+                            xDatosNO.Text = ("La Fecha del Brazalete no es valida");
+                            Log(dato, "La Fecha del Brazalete no es valida");
+                            ERROR.Begin();
+                            return;
+                        }
+
+                    }
+
+                    break;
+                default:
+                    xDatosNO.Text = "Este brazalete no es valido, acércate al Info Center mas Cercano";
+                    Log(dato, "La Fecha del Brazalete no es valida");
+                    ERROR.Begin();
+                    return;
+            }
+            */
+			return true;
+			
+		}
+		private int cFechas(String fecha1, String fechaActual) { 
+			  System.out.println("Parametro String Fecha 1 = "+fecha1+"\n" +
+			    "Parametro String fechaActual = "+fechaActual+"\n"); 
+			  int resultado="";
+			  try {
+			   /**Obtenemos las fechas enviadas en el formato a comparar*/
+			   SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+			   Date fechaDate1 = formateador.parse(fecha1);
+			   Date fechaDate2 = formateador.parse(fechaActual);
+			    
+			   System.out.println("Parametro Date Fecha 1 = "+fechaDate1+"\n" +
+			     "Parametro Date fechaActual = "+fechaDate2+"\n");
+			    
+			    if ( fechaDate1.before(fechaDate2) ){
+			    resultado= 1;
+			    }else{
+			     if ( fechaDate2.before(fechaDate1) ){
+			      resultado= 2;
+			     }else{
+			      resultado= 0;
+			     }
+			    }
+			  } catch (ParseException e) {
+			   System.out.println("Se Produjo un Error!!!  "+e.getMessage());
+			  } 
+			  return resultado;
+			 }
+
+		
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;libs&apos;&#x0D;&#x0A;- Original project: &apos;BlueFlameWMS&apos;&#x0D;&#x0A;- Destination element: &apos;libs&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     simple-xml-2.4.1.jar&#x0D;&#x0A;     volley.jar" description="Copy files" element1="libs/simple-xml-2.4.1.jar" element2="libs/volley.jar" files="2" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1404934496865" target="/Validador/libs" units="0" version="1.0"/>
+</session>

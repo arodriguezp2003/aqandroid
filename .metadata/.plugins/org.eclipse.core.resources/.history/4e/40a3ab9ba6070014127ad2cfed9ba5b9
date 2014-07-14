@@ -1,0 +1,31 @@
+package cl.tkpass.validador;
+
+
+import cl.tkpass.validador.app.AppController;
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.TextView;
+
+
+public class MainActivity extends Activity {
+	private EditText Barra;
+	private TextView Leyenda;
+  @Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		if(AppController.DEV)
+		{
+			setContentView(R.layout.debug_layout);
+		}
+		else
+		{
+			setContentView(R.layout.main_activity);
+		}
+		
+		
+		
+	}
+}

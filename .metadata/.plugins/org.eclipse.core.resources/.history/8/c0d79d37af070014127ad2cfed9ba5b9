@@ -1,0 +1,18 @@
+package cl.tkpass.validador.util;
+
+import android.content.Context;
+import cl.tkpass.validador.sql.BaseHandler;
+
+public class verifica {
+		private Context context ;
+		public verifica(Context con) {
+			context= con;
+		}
+		public boolean Verificar_Brazalete(String data)
+		{
+			//1 verifcar si el brazalete existe en la db
+			BaseHandler h = new BaseHandler(this.context);
+		
+			return true;
+		}
+}

@@ -1,0 +1,5 @@
+package cl.tkpass.validador.app;
+
+public class AppController {
+
+}

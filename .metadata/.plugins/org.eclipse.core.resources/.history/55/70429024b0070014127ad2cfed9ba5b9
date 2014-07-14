@@ -1,0 +1,71 @@
+package cl.tkpass.validador.util;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+import cl.tkpass.validador.sql.BaseHandler;
+import cl.tkpass.validador.sql.Brazaletes;
+
+public class verifica {
+		private Context context ;
+		public verifica(Context con) {
+			context= con;
+		}
+		public boolean Verificar_Brazalete(String data) throws ParseException
+		{
+			//1 verifcar si el brazalete existe en la db
+			BaseHandler h = new BaseHandler(this.context);
+			List<Brazaletes> lt = new ArrayList<Brazaletes>();
+			lt = h.BrazaleteWhere(data);
+			if(lt.size()>0)
+			{
+				//Verificar si se valido dentro de los 5 minutos
+				Brazaletes br = new Brazaletes();
+				br = lt.get(0);
+				
+				Date FechaActual = new Date();
+				Date FechaV = br.getFecha();
+				
+				long t=FechaV.getTime();
+				Date FechaNueva=new Date(t + (5 * 60000));
+				
+				if(FechaNueva.before(FechaActual))
+				{
+					this.MostrarMensaje( "Tu Brazalete ya fue registrado", 1);
+					return false;
+				}
+				
+			}
+			
+			
+			return true;
+		}
+	
+		public void MostrarMensaje(String msn, int tipo)
+		{
+			Toast toast3 = new Toast(this.context);
+			 
+	        LayoutInflater inflater = android.view.Window.getLayoutInflater();
+	        
+	        View layout = inflater.inflate(cl.tkpass.validador.R.layout.alerta_exitosa,
+	                        (ViewGroup) findViewById(cl.tkpass.validador.R.id.alerta_exitosa));
+	        TextView txtMsg2 = (TextView)layout.findViewById(cl.tkpass.validador.R.id.ae_welcome);
+	        TextView txtMsg = (TextView)layout.findViewById(cl.tkpass.validador.R.id.aeName);
+	        txtMsg2.setText("Bienvenido | Welcome :");
+	        txtMsg.setText(msn);
+	 
+	        toast3.setDuration(Toast.LENGTH_LONG);
+	        toast3.setView(layout);
+	        toast3.show();
+		}
+}

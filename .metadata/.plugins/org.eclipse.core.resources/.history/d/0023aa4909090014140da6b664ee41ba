@@ -1,0 +1,81 @@
+package cl.tkpass.validador.app;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import cl.tkpass.validador.sql.BaseHandler;
+import cl.tkpass.validador.sql.Brazaletes;
+import android.app.IntentService;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+
+
+public class Servicio extends IntentService {
+
+	public Servicio() {
+		super("Servicio");
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected void onHandleIntent(Intent intent) {
+		// TODO Auto-generated method stub
+
+		Timer t = new Timer();
+
+	    TimerTask task = new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					Context c = getApplicationContext();
+					BaseHandler b = new BaseHandler(c);
+					List<Brazaletes> br =  b.BrazaleteEnviado("0");		
+					for(Brazaletes item: br)
+					{
+						Log.d("SERVICIO", item.getBrazalete() );
+						
+						String[] p = item.Brazalete.split("-");
+						
+			    		
+				 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+				    	String fe = format.parse(item.getFecha().toString()).toString();
+				    	 
+						String u =
+						"http://192.168.1.99/turistik/Webservice/EmbarcarJSON.php?p=201415&codigo=" + p[0] + "&bus=0&fecha=" + fe;
+						URL url = new URL(u);
+						URLConnection connection = url.openConnection();
+						
+					}
+					
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	    };
+	    	
+		t.schedule(task, 0,5000);
+		
+	}
+
+	
+
+
+
+}

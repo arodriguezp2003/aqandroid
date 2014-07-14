@@ -80,7 +80,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
 		
 		String fechas = c.getString(fecha);
 	
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			Date f1 = format.parse(fechas);
 			Date f2 = new Date();
