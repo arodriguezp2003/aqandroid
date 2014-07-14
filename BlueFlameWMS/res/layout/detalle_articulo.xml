@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+   
+    <LinearLayout 
+      	android:id="@+id/da_lin1"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:padding="5dp"
+    	android:orientation="horizontal" >
+        <TextView
+        android:id="@+id/dansku"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="SKU"
+        android:padding="5dp"
+        android:paddingRight="7dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="#124686"
+        android:color="#FFFFFF"
+         />
+        <TextView
+        android:id="@+id/daSKU"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="1234567890123"
+        android:background="#FFFCCC"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+	</LinearLayout>
+	
+    <LinearLayout 
+      	android:id="@+id/da_lin2"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:padding="5dp"
+    	android:orientation="horizontal" >
+        <TextView
+        android:id="@+id/dancodcor"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="CodCor"
+        android:padding="5dp"
+        android:paddingRight="7dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="#124686"
+        android:color="#FFFFFF"
+         />
+        <TextView
+        android:id="@+id/daCodCor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="123"
+        android:background="#FFFCCC"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+	</LinearLayout>
+  
+    <LinearLayout 
+      	android:id="@+id/da_lin23"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:padding="5dp"
+    	android:orientation="horizontal" >
+        <TextView
+        android:id="@+id/dannombre"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:padding="5dp"
+        android:paddingRight="7dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="#124686"
+        android:color="#FFFFFF"
+         />
+        <TextView
+        android:id="@+id/daNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="123"
+        android:background="#FFFCCC"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+	</LinearLayout>
+	
+    <LinearLayout 
+      	android:id="@+id/da_lin4"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:padding="5dp"
+    	android:orientation="horizontal" >
+        <TextView
+        android:id="@+id/danum"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Unidad M."
+        android:padding="5dp"
+        android:paddingRight="7dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="#124686"
+        android:color="#FFFFFF"
+         />
+        <TextView
+        android:id="@+id/daUm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="123"
+        android:background="#FFFCCC"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+	</LinearLayout>
+</LinearLayout>
